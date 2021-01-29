@@ -50,6 +50,7 @@ module.exports = {
 
 function getTripsSidebar() {
   return [
+    '',
     'places',
     {
       title: 'Join a Trip',
@@ -71,6 +72,7 @@ function getTripsSidebar() {
 
 function getAboutUsSidebar() {
   return [
+    '',
     {
       title: 'Mission',
       children: [

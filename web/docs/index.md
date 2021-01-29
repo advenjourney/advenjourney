@@ -6,19 +6,19 @@ navbar: true
 sidebar: true
 editLink: true
 home: true
-heroImage: /logo.png
+heroImage: /title.jpeg
 heroAlt: Logo image
-heroText: Hero Title
-tagline: Hero subtitle
+heroText: AdvenJourney - Travel Together
+tagline: Make your journey our journey. 
 actionText: Meet Us
 actionLink: /about-us/
 features:
-- title: Simplicity First
-  details: Minimal setup with markdown-centered project structure helps you focus on writing.
-- title: Vue-Powered
-  details: Enjoy the dev experience of Vue + webpack, use Vue components in markdown, and develop custom themes with Vue.
-- title: Performant
-  details: VitePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
+- title: Find a trip
+  details: There are plenty of pre-planned trips out there just waiting for you...
+- title: Create a trip
+  details: Do you want to offer a unique trip? Plan a trip and make it visible for others to join.
+- title: Find a travel buddy
+  details: Find your perfect travel buddy based on interests, location and many other characteristics.
 footer: MIT Licensed
 ---
 
@@ -26,11 +26,21 @@ footer: MIT Licensed
 
 [[toc]]
 
-## Where is your next trip?
+![Botanical Garden Kuala Lumpur](./trips.jpeg)
+
+## Whats your next destination?
 * Hike in Madeira
 * Coworking in Bali
+* Paragliding in Nepal
 
 ## What you gonna do there?
 * Cooking with friends
+* Yoga at the beach
+* Hiking in the mountains 
 
+
+# Reviews and impressions from past trips
+::: tip Reviews
+Search for reviews
+:::
 
