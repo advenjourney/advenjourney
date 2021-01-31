@@ -11,5 +11,11 @@
   },
   "devDependencies": {
     "vuepress": "^1.8.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "graphql": "^15.5.0",
+    "graphql-tag": "^2.11.0",
+    "vue-axios": "^3.2.3"
   }
 }
