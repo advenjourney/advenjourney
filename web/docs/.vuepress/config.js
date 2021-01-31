@@ -4,12 +4,13 @@ module.exports = {
   description: 'Just playing around.',
 
   themeConfig: {
-    repo: 'advenjourney/site',
+    repo: 'advenjourney/website',
+    docsBranch: 'main',
     docsDir: 'docs',
-
     editLinks: true,
+
     editLinkText: 'Edit this page',
-    lastUpdated: 'Last Updated',
+    // lastUpdated: 'Last Updated',
 
     // algolia: {
     //   apiKey: 'c57105e511faa5558547599f120ceeba',
@@ -37,7 +38,12 @@ module.exports = {
         text: 'About Us', 
         link: '/about-us/', 
         activeMatch: '^/about-us/' 
+      },
+      {
+        text: 'Login',
+        link: '/login'
       }
+
     ],
 
     sidebar: {
