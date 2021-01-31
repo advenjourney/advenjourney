@@ -1,7 +1,12 @@
 <template>
   <ul>
-    <li>Trip 1</li>
-    <li>Trip 2</li>
-    <li>Trip 3</li>
+    <li v-for="trip in trips" :key="trip">{{trip}}</li>
   </ul>
 </template>
+<script>
+export default {
+  data: () => ({
+    trips: ["Trip 1", "Trip2", "Trip3"]
+  })
+}
+</script>
