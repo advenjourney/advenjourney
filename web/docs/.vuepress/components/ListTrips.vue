@@ -1,11 +1,9 @@
 <template>
   <ul>
-    <li v-for="trip in trips" :key="trip">{{trip}}</li>
+    <li v-for="trip in trips" :key="trip.title" v-text="trip.title" />
   </ul>
 </template>
 <script>
-import gql from 'graphql-tag'
-
 export default {
   data: () => ({
     trips: []
@@ -27,11 +25,9 @@ export default {
           }
         }
         `
-      const trips = await this.axios.post('http://localhost:9000/query', {
-        query
-      })
+      const trips = await this.axios.post('http://localhost:9000/query', { query }, { headers: { 'Content-Type': 'application/json' } })
 
-      console.log(trips)
+      this.trips = trips.data.data.offers
     }
   }
 }
