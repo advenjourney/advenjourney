@@ -1,5 +1,5 @@
 ---
-title: What is AdvenJourney?
+title: About
 lang: en-US
 description: About our mission and the team
 navbar: true
@@ -7,32 +7,5 @@ sidebar: true
 editLink: true
 ---
 
-# About Us
+# We love to travel with like minded people
 
-{{ $frontmatter.description }}
-
-[[toc]]
-
-## Our mission is traveling - together
-
-::: tip Mission
-Travel with like minded people is best!
-:::
-
-## The team behind the project
-
-Jan, Christine, Patrick, Lukas, Nico, Tina, Felix
-## Join us!
-
-:tada:
-
-## Our Code
-
-```js
-export default {
-  name: 'MyComponent',
-  // ...
-}
-```
-
-Rocks

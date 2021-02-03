@@ -6,7 +6,7 @@
   "repository": "https://github.com/advenjourney/website",
   "license": "MIT",
   "scripts": {
-    "docs:dev": "vuepress dev docs",
+    "docs:dev": "cross-env-shell NODE_ENV=production vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
   "devDependencies": {
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "cross-env": "^7.0.3",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.11.0",
     "vue-axios": "^3.2.3"

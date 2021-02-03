@@ -1,34 +1,20 @@
 module.exports = {
+
   lang: 'en-US',
   title: 'AdvenJourney',
   description: 'Just playing around.',
 
   themeConfig: {
+    custom: {
+      url: process.env.NODE_ENV === 'development' ? 'http://localhost:8081' : 'https:advenjourney.com/api'
+    },
     repo: 'advenjourney/website',
     docsBranch: 'main',
     docsDir: 'docs',
     editLinks: true,
-
     editLinkText: 'Edit this page',
-    // lastUpdated: 'Last Updated',
-
-    // algolia: {
-    //   apiKey: 'c57105e511faa5558547599f120ceeba',
-    //   indexName: 'vitepress'
-    // },
-
-    // carbonAds: {
-    //   carbon: 'CEBDT27Y',
-    //   custom: 'CKYD62QM',
-    //   placement: 'vuejsorg'
-    // },
 
     nav: [
-      {
-        text: 'Home',
-        link: '/',
-        activeMatch: '^/$'
-      },
       { 
         text: 'Trips', 
         link: '/trips/', 
@@ -43,13 +29,17 @@ module.exports = {
         text: 'Login',
         link: '/login'
       }
-
     ],
 
+    displayAllHeaders: true,
     sidebar: {
       '/trips/': getTripsSidebar(),
-      '/about-us/': getAboutUsSidebar(),
-      '/': getAboutUsSidebar()
+      '/about-us/': [
+        '',
+        'mission',
+        'community',
+        'team'
+      ]
     }
   }
 }
@@ -62,8 +52,6 @@ function getTripsSidebar() {
       title: 'Join a Trip',
       path: '/trips/join',
       collapsable: false,
-      // initialOpenGroupIndex: 1,
-      // sidebarDepth: 3
     },
     {
       title: 'Create a Trip',
@@ -73,19 +61,5 @@ function getTripsSidebar() {
         'publish'
       ]
     }
-  ]
-}
-
-function getAboutUsSidebar() {
-  return [
-    '',
-    {
-      title: 'Mission',
-      children: [
-        '/about-us/'
-      ]
-    },
-    'community',
-    'team'
   ]
 }

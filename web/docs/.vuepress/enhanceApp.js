@@ -1,6 +1,19 @@
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-export default ({ Vue }) => {
+export default ({Vue,
+    options,
+    router,
+    siteData,
+    isServer }) => {
   Vue.use(VueAxios, axios)
+
+  let debug = true
+  if (debug) {
+    console.log(Vue)
+    console.log(options)
+    console.log(router)
+    console.log(siteData)
+    console.log(isServer)
+  }
 };
