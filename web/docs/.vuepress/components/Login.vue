@@ -48,6 +48,7 @@ export default {
     }),
 
     mounted() {
+        this.apiUrl = this.$site.themeConfig.custom.url
         if (sessionStorage.getItem('token')) {
             console.log('Exists')
             this.state = 'authorized'
@@ -62,7 +63,7 @@ export default {
                 login(input: {username: "${this.loginUsername}", password: "${this.loginPassword}"})
             }
             `
-            this.axios.post('http://localhost:9000/query', { query })
+            this.axios.post(this.apiUrl, { query })
                 .then(res => {
                     if (res.data.data) {
                         this.state = 'authorized'
@@ -83,7 +84,7 @@ export default {
                 createUser(input: {username: "${this.registerUsername}", password: "${this.registerPassword}"})
             }
             `
-            this.axios.post('http://localhost:9000/query', { query })
+            this.axios.post(this.apiUrl, { query })
                 .then(res => {
                     if (res.data.data) {
                         this.state = 'authorized'
