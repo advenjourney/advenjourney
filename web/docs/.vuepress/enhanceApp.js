@@ -8,7 +8,7 @@ export default ({Vue,
     isServer }) => {
   Vue.use(VueAxios, axios)
 
-  let debug = true
+  let debug = false
   if (debug) {
     console.log(Vue)
     console.log(options)

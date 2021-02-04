@@ -9,7 +9,8 @@ export default {
     trips: []
   }),
 
-  created() {
+  mounted() {
+    this.apiUrl = this.$site.themeConfig.custom.url
     this.getTrips()
   },
 
@@ -25,7 +26,7 @@ export default {
           }
         }
         `
-      const trips = await this.axios.post('http://localhost:9000/query', { query }, { headers: { 'Content-Type': 'application/json' } })
+      const trips = await this.axios.post(this.apiUrl, { query }, { headers: { 'Content-Type': 'application/json' } })
 
       this.trips = trips.data.data.offers
     }

@@ -43,5 +43,3 @@ footer: MIT Licensed
 ::: tip Reviews
 Search for reviews
 :::
-
-<!-- {{process}} -->

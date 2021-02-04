@@ -1,12 +1,28 @@
-module.exports = {
+// configs depending on environment
+let base = ''
+let apiURL = "http:localhost:9000/query"
 
+console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV === "production") {
+  apiURL = "https://api.advenjourney.com/query"
+}
+if (process.env.API) {
+  apiURL = process.env.API
+}
+if (process.env.BASE) {
+  base = process.env.BASE
+}
+console.log("Base: ", base, "API: ", apiURL)
+
+module.exports = {
   lang: 'en-US',
   title: 'AdvenJourney',
   description: 'Just playing around.',
+  base: base,
 
   themeConfig: {
     custom: {
-      url: process.env.NODE_ENV === 'development' ? 'http://localhost:8081' : 'https:advenjourney.com/api'
+      url: apiURL,
     },
     repo: 'advenjourney/website',
     docsBranch: 'main',
