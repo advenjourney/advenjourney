@@ -1,5 +1,5 @@
 {
-  "name": "novaturient",
+  "name": "advenjourney-web",
   "scripts": {
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
@@ -59,7 +59,7 @@
     "vue-template-compiler": "^2.6.11"
   },
   "nativescript": {
-    "id": "org.advenjourney.novaturient",
+    "id": "org.advenjourney.web",
     "tns-android": {
       "version": "6.3.1"
     },
