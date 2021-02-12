@@ -1,6 +1,6 @@
 SHELL := bash
 NAME := api
-IMPORT := github.com/advenjourney/$(NAME)
+IMPORT := github.com/advenjourney/advenjourney/$(NAME)
 BIN := bin
 DIST := dist
 GO := CGO_ENABLED=0 go
