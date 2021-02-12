@@ -7,8 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vuepress dev docs",
-    "build:staging": "API='http://staging.advenjourney.systems:32089/query' vuepress build docs",
-    "build": "vuepress build docs"
+    "build": "vuepress build docs --dest ../api/static"
   },
   "devDependencies": {
     "vuepress": "^1.8.0"
