@@ -38,7 +38,7 @@ func main() {
 	database.InitDB(*cfg)
 	database.Migrate()
 	server := handler.NewDefaultServer(api.NewExecutableSchema(api.Config{Resolvers: &graph.Resolver{}}))
-	router.Handle("/", playground.Handler("GraphQL playground", "/query"))
+	router.Handle("/playground", playground.Handler("GraphQL playground", "/query"))
 	router.Handle("/query", server)
 
 	log.Printf("Server running at %s", cfg.Server.Addr)
