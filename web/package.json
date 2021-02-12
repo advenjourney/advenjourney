@@ -1,0 +1,22 @@
+{
+  "name": "AdvenJourney",
+  "version": "1.0.0",
+  "description": "Travel Together",
+  "main": "index.js",
+  "repository": "https://github.com/advenjourney/website",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build:staging": "API='http://staging.advenjourney.systems:32089/query' vuepress build docs",
+    "build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "vuepress": "^1.8.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "graphql": "^15.5.0",
+    "graphql-tag": "^2.11.0",
+    "vue-axios": "^3.2.3"
+  }
+}
