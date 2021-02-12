@@ -1,16 +1,10 @@
 // configs depending on environment
 let base = ''
-let apiURL = "http:localhost:9000/query"
+let apiURL = "http://localhost:8080/query"
 
 console.log(process.env.NODE_ENV)
 if (process.env.NODE_ENV === "production") {
-  apiURL = "https://api.advenjourney.com/query"
-}
-if (process.env.API) {
-  apiURL = process.env.API
-}
-if (process.env.BASE) {
-  base = process.env.BASE
+  apiURL = "/query"
 }
 console.log("Base: ", base, "API: ", apiURL)
 
