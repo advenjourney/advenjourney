@@ -11,16 +11,15 @@ on:
 
 
 jobs:
-  api:
+  build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: api
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v2
+      - uses: actions/setup-node@v2
         with:
           go-version: '^1.15.0'
+          node-version: '15.x'
 
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v2
@@ -28,19 +27,22 @@ jobs:
           version: v1.35
           working-directory: api
 
-      - name: build
-        run: make build
+      - name: assets-build
+        run: cd web && yarn install && yarn build
 
-      - name: container
-        run: make container
+      - name: make-api
+        run: cd api && make build
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: push to dockerhub
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        run: make container-push
+#      - name: container
+#        run: make container
+#
+#      - name: Login to Docker Hub
+#        uses: docker/login-action@v1
+#        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+#        with:
+#          username: ${{ secrets.DOCKERHUB_USERNAME }}
+#          password: ${{ secrets.DOCKERHUB_TOKEN }}
+#
+#      - name: push to dockerhub
+#        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+#        run: make container-push
