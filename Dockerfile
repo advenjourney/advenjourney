@@ -3,7 +3,7 @@ COPY ./web /src/web
 WORKDIR /src/web
 RUN yarn exec vuepress build docs
 
-FROM golang:1.15.7 AS go-builder
+FROM golang:1.15.8 AS go-builder
 COPY ./api /src/api
 WORKDIR /src/api
 RUN make clean && make sync
