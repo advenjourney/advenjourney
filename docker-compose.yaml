@@ -1,12 +1,11 @@
 version: '3.8'
 
-
 services:
   api:
-    image: advenjourney/api
+    image: advenjourney/advenjourney
     build:
       context: .
-      dockerfile: ./cmd/api/Dockerfile
+      dockerfile: Dockerfile
     restart: always
     environment:
       API_SERVER_ADDR: ':8080'
