@@ -69,11 +69,11 @@ debug = false
 [[custom]]
 
   # type: array of strings
-  files = ["../../static"]
+  files = ["../../assets"]
 
   # base is the path that will be removed from all files' path
   # type: string
-  base = "../../static"
+  base = "../../assets"
 
   # prefix is the path that will be added to all files' path
   # type: string
