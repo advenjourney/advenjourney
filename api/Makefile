@@ -41,6 +41,7 @@ clean:
 	$(GO) clean -i ./...
 	rm -rf $(BIN)/
 	rm -rf $(DIST)/
+	rm -rf ./assets/*
 
 .PHONY: sync
 sync:
@@ -76,7 +77,7 @@ test:
 build: $(BIN)/$(EXECUTABLE)
 
 $(BIN)/$(EXECUTABLE): $(SOURCES)
-	$(GO) build -i -v -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o $@ ./cmd/$(NAME)
+	$(GO) build -v -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o $@ ./cmd/$(NAME)
 
 .PHONY: release
 release: release-dirs release-build release-checksums
