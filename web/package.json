@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vuepress dev docs",
-    "build": "vuepress build docs --dest ../api/static"
+    "build": "vuepress build docs --dest ../api/assets"
   },
   "devDependencies": {
     "vuepress": "^1.8.0"
