@@ -76,8 +76,14 @@ test:
 .PHONY: build
 build: $(BIN)/$(EXECUTABLE)
 
+.PHONY: assets
+assets:
+	(cd ../web; yarn build)
+	(cd ../api; make generate)
+
 $(BIN)/$(EXECUTABLE): $(SOURCES)
-	$(GO) build -v -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o $@ ./cmd/$(NAME)
+	(make assets)
+	($(GO) build -v -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o $@ ./cmd/$(NAME))
 
 .PHONY: release
 release: release-dirs release-build release-checksums
