@@ -1,22 +1,24 @@
+//go:generate go run github.com/UnnoTed/fileb0x  ../../pkg/assets/assets.toml
 package main
 
 import (
+	"log"
+	"net/http"
+	"os"
+	"strings"
+
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/advenjourney/api/graph"
 	api "github.com/advenjourney/api/graph/generated"
 	"github.com/advenjourney/api/internal/auth"
 	database "github.com/advenjourney/api/internal/pkg/db/mysql"
+	"github.com/advenjourney/api/pkg/assets"
 	"github.com/advenjourney/api/pkg/config"
 	"github.com/advenjourney/api/pkg/version"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/joho/godotenv"
-	"log"
-	"net/http"
-	"os"
-	"path/filepath"
-	"strings"
 )
 
 func main() {
@@ -31,6 +33,14 @@ func main() {
 	if !ok || dsn == "" {
 		log.Fatal("DSN (API_DB_DSN) not provided")
 	}
+
+	assetsDir, ok := os.LookupEnv("API_ASSETS_DIR")
+	var assetFS = assets.HTTP
+	if ok && assetsDir != "" {
+		log.Printf("using external assets dir %v", assetsDir)
+		assetFS = http.Dir(assetsDir)
+	}
+
 	cfg.Database.DSN = dsn
 
 	router := chi.NewRouter()
@@ -43,22 +53,20 @@ func main() {
 	router.Handle("/playground", playground.Handler("GraphQL playground", "/query"))
 	router.Handle("/query", CorsMiddleware(server))
 
-	filesDir := http.Dir(filepath.Join("./static"))
-	FileServer(router, "/", filesDir)
+	StaticAssets(router, "/", assetFS)
 
 	log.Printf("Server running at %s", cfg.Server.Addr)
 	log.Fatal(http.ListenAndServe(cfg.Server.Addr, router))
 }
 
-// FileServer conveniently sets up a http.FileServer handler to serve
-// static files from a http.FileSystem.
-func FileServer(r chi.Router, path string, root http.FileSystem) {
+// StaticAssets serves static assets from the provided http.FileSystem
+func StaticAssets(r chi.Router, path string, root http.FileSystem) {
 	if strings.ContainsAny(path, "{}*") {
-		panic("FileServer does not permit any URL parameters.")
+		panic("StaticAssets does not permit any URL parameters.")
 	}
 
 	if path != "/" && path[len(path)-1] != '/' {
-		r.Get(path, http.RedirectHandler(path+"/", 301).ServeHTTP)
+		r.Get(path, http.RedirectHandler(path+"/", http.StatusMovedPermanently).ServeHTTP)
 		path += "/"
 	}
 	path += "*"
