@@ -15,21 +15,25 @@ type User struct {
 	Password string `json:"password"`
 }
 
-func (user *User) Create() {
-	statement, err := database.DB.Prepare("INSERT INTO Users(Username,Password) VALUES(?,?)")
-	print(statement)
-	if err != nil {
-		log.Fatal(err)
-	}
+func (user *User) Create() error {
 	hashedPassword, err := HashPassword(user.Password)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
+
+	statement, err := database.DB.Prepare("INSERT INTO Users(Username,Password) VALUES(?,?)")
+	if err != nil {
+		return err
+	}
+
+	defer statement.Close()
 
 	_, err = statement.Exec(user.Username, hashedPassword)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
+
+	return nil
 }
 
 // HashPassword hashes given password
@@ -52,6 +56,9 @@ func GetUserIDByUsername(username string) (int, error) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	defer statement.Close()
+
 	row := statement.QueryRow(username)
 
 	var ID int
@@ -71,17 +78,19 @@ func GetUserIDByUsername(username string) (int, error) {
 func (user *User) Authenticate() bool {
 	statement, err := database.DB.Prepare("select Password from Users WHERE Username = ?")
 	if err != nil {
-		log.Fatal(err)
+		log.Printf("coud not prepare auth query %v", err)
 	}
-	row := statement.QueryRow(user.Username)
 
+	defer statement.Close()
+
+	row := statement.QueryRow(user.Username)
 	var hashedPassword string
-	err = row.Scan(&hashedPassword)
-	if err != nil {
-		if err == sql.ErrNoRows {
-			return false
+	if err := row.Scan(&hashedPassword); err != nil {
+		if err != sql.ErrNoRows {
+			log.Printf("unexpected query error in auth: %v", err)
 		}
-		log.Fatal(err)
+
+		return false
 	}
 
 	return CheckPasswordHash(user.Password, hashedPassword)
