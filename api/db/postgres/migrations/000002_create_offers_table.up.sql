@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS Offers(
-    ID INT NOT NULL UNIQUE AUTO_INCREMENT,
+    ID serial NOT NULL UNIQUE,
     Title VARCHAR (255) ,
     Location VARCHAR (255) ,
     Description VARCHAR (10000) ,

@@ -30,10 +30,14 @@ func (r *mutationResolver) CreateOffer(ctx context.Context, input model.NewOffer
 	offer.TitleImageURL = input.TitleImageURL
 	offer.Title = input.Title
 	offer.User = user
-	offerID := offer.Save()
 	grahpqlUser := &model.User{
 		ID:   user.ID,
 		Name: user.Username,
+	}
+
+	offerID, err := offer.Save()
+	if err != nil {
+		return nil, err
 	}
 
 	return &model.Offer{ID: strconv.FormatInt(offerID, 10), Title: offer.Title, Location: offer.Location, Description: offer.Description, TitleImageURL: offer.TitleImageURL, User: grahpqlUser}, nil
@@ -43,7 +47,7 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 	var user users.User
 	user.Username = input.Username
 	user.Password = input.Password
-	err := user.Create()
+	err := user.Create(ctx)
 	if err != nil {
 		graphql.AddError(ctx, err)
 
@@ -90,7 +94,10 @@ func (r *mutationResolver) RefreshToken(ctx context.Context, input model.Refresh
 
 func (r *queryResolver) Offers(ctx context.Context) ([]*model.Offer, error) {
 	var resultOffers []*model.Offer
-	dbOffers := offers.GetAll()
+	dbOffers, err := offers.GetAll()
+	if err != nil {
+		return nil, err
+	}
 	for _, offer := range dbOffers {
 		// grahpqlUser := &model.User{
 		//	 ID:   link.User.ID,

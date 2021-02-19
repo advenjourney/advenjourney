@@ -1,9 +1,10 @@
 package offers
 
 import (
-	"log"
+	"context"
+	"strconv"
 
-	database "github.com/advenjourney/api/internal/pkg/db/mysql"
+	database "github.com/advenjourney/api/internal/pkg/db/postgres"
 	"github.com/advenjourney/api/internal/users"
 )
 
@@ -18,62 +19,52 @@ type Offer struct {
 }
 
 //#2
-func (offer Offer) Save() int64 {
-	//#3
-	stmt, err := database.DB.Prepare("INSERT INTO Offers(Title,Location,Description,TitleImageURL, UserID) VALUES(?,?,?,?,?)")
-	if err != nil {
-		log.Fatal(err)
-	}
-	//#4
-	res, err := stmt.Exec(offer.Title, offer.Location, offer.Description, offer.TitleImageURL)
-	if err != nil {
-		log.Fatal(err)
-	}
-	//#5
-	id, err := res.LastInsertId()
-	if err != nil {
-		log.Fatal("Error:", err.Error())
-	}
-	log.Print("Row inserted!")
+func (offer Offer) Save() (int64, error) {
+	ctx := context.Background()
+	q := "INSERT INTO Offers(Title,Location,Description,TitleImageURL, UserID) VALUES($1,$2,$3,$4,$5) RETURNING id"
 
-	return id
+	res := database.DB.QueryRow(ctx, q, offer.Title, offer.Location, offer.Description, offer.TitleImageURL, offer.User.ID)
+	var newOfferID int64
+	if err := res.Scan(&newOfferID); err != nil {
+		return 0, err
+	}
+
+	return newOfferID, nil
 }
 
-func GetAll() []Offer {
-	stmt, err := database.DB.Prepare("select O.id, O.title, O.location, O.description, O.titleimageurl, O.UserID, U.Username from Offers O inner join Users U on O.UserID = U.ID")
+func GetAll() ([]Offer, error) {
+	ctx := context.Background()
+	q := `SELECT o.id, o.title, o.location, o.description, o.titleimageurl, o.UserID, u.Username
+          FROM offers o
+		  INNER JOIN users u ON o.UserID = u.ID`
 
+	rows, err := database.DB.Query(ctx, q)
 	if err != nil {
-		// TODO: handle this more gracefully
-		log.Panic(err)
-	}
-	defer stmt.Close()
-
-	rows, err := stmt.Query()
-	if err != nil {
-		// TODO: handle this more gracefully
-		log.Panic(err)
+		return nil, err
 	}
 	defer rows.Close()
 
 	var offers []Offer
-	var id, username string
+
 	for rows.Next() {
-		var offer Offer
-		err := rows.Scan(&offer.ID, &offer.Title, &offer.Location, &offer.Description, &offer.TitleImageURL, &id, &username)
+		var offer = Offer{}
+		var username string
+		var userID, offerID int // missmatch? DB-Schema says int...
+		err := rows.Scan(&offerID, &offer.Title, &offer.Location, &offer.Description, &offer.TitleImageURL, &userID, &username)
 		if err != nil {
-			// TODO: should not panic here yet
-			log.Panic(err)
+			return nil, err
 		}
+
+		offer.ID = strconv.Itoa(offerID) // ... but ID is string?
 		offer.User = &users.User{
-			ID:       id,
+			ID:       strconv.Itoa(userID),
 			Username: username,
 		}
 		offers = append(offers, offer)
 	}
 	if err = rows.Err(); err != nil {
-		// TODO: needs proper error handling // logging to not exit on fatal error
-		log.Panic(err)
+		return nil, err
 	}
 
-	return offers
+	return offers, nil
 }
