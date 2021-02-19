@@ -82,7 +82,6 @@ assets:
 	(cd ../api; make generate)
 
 $(BIN)/$(EXECUTABLE): $(SOURCES)
-	(make assets)
 	($(GO) build -v -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o $@ ./cmd/$(NAME))
 
 .PHONY: release
