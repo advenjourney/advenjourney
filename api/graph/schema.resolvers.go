@@ -8,6 +8,8 @@ import (
 	"fmt"
 	"strconv"
 
+	"github.com/99designs/gqlgen/graphql"
+
 	"github.com/advenjourney/api/graph/generated"
 	"github.com/advenjourney/api/graph/model"
 	"github.com/advenjourney/api/internal/auth"
@@ -41,7 +43,13 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 	var user users.User
 	user.Username = input.Username
 	user.Password = input.Password
-	user.Create()
+	err := user.Create()
+	if err != nil {
+		graphql.AddError(ctx, err)
+
+		return "", nil
+	}
+
 	token, err := jwt.GenerateToken(user.Username)
 	if err != nil {
 		return "", err
