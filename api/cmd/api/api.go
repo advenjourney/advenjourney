@@ -2,6 +2,7 @@
 package main
 
 import (
+	"context"
 	"log"
 	"net/http"
 	"os"
@@ -12,7 +13,7 @@ import (
 	"github.com/advenjourney/api/graph"
 	api "github.com/advenjourney/api/graph/generated"
 	"github.com/advenjourney/api/internal/auth"
-	database "github.com/advenjourney/api/internal/pkg/db/mysql"
+	database "github.com/advenjourney/api/internal/pkg/db/postgres"
 	"github.com/advenjourney/api/pkg/assets"
 	"github.com/advenjourney/api/pkg/config"
 	"github.com/advenjourney/api/pkg/version"
@@ -47,7 +48,7 @@ func main() {
 	router.Use(middleware.Logger)
 	router.Use(auth.Middleware())
 
-	database.InitDB(*cfg)
+	database.InitDB(context.TODO(), *cfg)
 	database.Migrate()
 	server := handler.NewDefaultServer(api.NewExecutableSchema(api.Config{Resolvers: &graph.Resolver{}}))
 	router.Handle("/playground", playground.Handler("GraphQL playground", "/query"))
