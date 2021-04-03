@@ -23,7 +23,7 @@ require (
 	github.com/gorilla/mux v1.7.4 // indirect
 	github.com/hashicorp/golang-lru v0.5.1 // indirect
 	github.com/jackc/pgtype v1.6.2 // indirect
-	github.com/jackc/pgx/v4 v4.10.1
+	github.com/jackc/pgx/v4 v4.11.0
 	github.com/joho/godotenv v1.3.0
 	github.com/mitchellh/mapstructure v0.0.0-20180220230111-00c29f56e238 // indirect
 	github.com/morikuni/aec v1.0.0 // indirect
