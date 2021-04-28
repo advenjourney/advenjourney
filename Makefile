@@ -1,6 +1,7 @@
 SHELL := bash
-NAME := api
-IMPORT := github.com/advenjourney/advenjourney/$(NAME)
+BACKEND := api
+FRONTEN := web
+IMPORT := github.com/advenjourney/advenjourney
 BIN := bin
 DIST := dist
 GO := CGO_ENABLED=0 go
@@ -29,9 +30,9 @@ ifndef REVISION
 endif
 
 LDFLAGS += -s -w
-LDFLAGS += -X "$(IMPORT)/pkg/version.Version=$(VERSION)"
-LDFLAGS += -X "$(IMPORT)/pkg/version.BuildDate=$(DATE)"
-LDFLAGS += -X "$(IMPORT)/pkg/version.Revision=$(REVISION)"
+LDFLAGS += -X "$(IMPORT)/$(BACKEND)/pkg/version.Version=$(VERSION)"
+LDFLAGS += -X "$(IMPORT)/$(BACKEND)/pkg/version.BuildDate=$(DATE)"
+LDFLAGS += -X "$(IMPORT)/$(BACKEND)/pkg/version.Revision=$(REVISION)"
 
 .PHONY: all
 all: build
