@@ -1,12 +1,13 @@
 package users
 
 import (
+	"context"
 	"database/sql"
 	"log"
 
 	"golang.org/x/crypto/bcrypt"
 
-	database "github.com/advenjourney/api/internal/pkg/db/mysql"
+	database "github.com/advenjourney/api/internal/pkg/db/postgres"
 )
 
 type User struct {
@@ -15,21 +16,18 @@ type User struct {
 	Password string `json:"password"`
 }
 
-func (user *User) Create() {
-	statement, err := database.DB.Prepare("INSERT INTO Users(Username,Password) VALUES(?,?)")
-	print(statement)
-	if err != nil {
-		log.Fatal(err)
-	}
+func (user *User) Create(ctx context.Context) error {
 	hashedPassword, err := HashPassword(user.Password)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
-	_, err = statement.Exec(user.Username, hashedPassword)
+	_, err = database.DB.Exec(ctx, "INSERT INTO Users(Username,Password) VALUES($1,$2)", user.Username, hashedPassword)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
+
+	return nil
 }
 
 // HashPassword hashes given password
@@ -48,15 +46,11 @@ func CheckPasswordHash(password, hash string) bool {
 
 // GetUserIDByUsername check if a user exists in database by given username
 func GetUserIDByUsername(username string) (int, error) {
-	statement, err := database.DB.Prepare("select ID from Users WHERE Username = ?")
-	if err != nil {
-		log.Fatal(err)
-	}
-	row := statement.QueryRow(username)
+	ctx := context.Background()
+	row := database.DB.QueryRow(ctx, "SELECT ID from Users WHERE Username = $1", username)
 
 	var ID int
-	err = row.Scan(&ID)
-	if err != nil {
+	if err := row.Scan(&ID); err != nil {
 		if err != sql.ErrNoRows {
 			log.Print(err)
 		}
@@ -69,19 +63,15 @@ func GetUserIDByUsername(username string) (int, error) {
 
 // Authenticate authenticates a user
 func (user *User) Authenticate() bool {
-	statement, err := database.DB.Prepare("select Password from Users WHERE Username = ?")
-	if err != nil {
-		log.Fatal(err)
-	}
-	row := statement.QueryRow(user.Username)
-
+	ctx := context.Background()
+	row := database.DB.QueryRow(ctx, "SELECT Password from Users WHERE Username = $1", user.Username)
 	var hashedPassword string
-	err = row.Scan(&hashedPassword)
-	if err != nil {
-		if err == sql.ErrNoRows {
-			return false
+	if err := row.Scan(&hashedPassword); err != nil {
+		if err != sql.ErrNoRows {
+			log.Printf("unexpected query error in auth: %v", err)
 		}
-		log.Fatal(err)
+
+		return false
 	}
 
 	return CheckPasswordHash(user.Password, hashedPassword)

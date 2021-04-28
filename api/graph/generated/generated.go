@@ -12,10 +12,9 @@ import (
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/introspection"
+	"github.com/advenjourney/api/graph/model"
 	gqlparser "github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
-
-	"github.com/advenjourney/api/graph/model"
 )
 
 // region    ************************** generated!.gotpl **************************
@@ -328,7 +327,7 @@ func (ec *executionContext) field_Mutation_createOffer_args(ctx context.Context,
 	var arg0 model.NewOffer
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNNewOffer2gqlgenᚋgraphᚋmodelᚐNewOffer(ctx, tmp)
+		arg0, err = ec.unmarshalNNewOffer2githubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐNewOffer(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -343,7 +342,7 @@ func (ec *executionContext) field_Mutation_createUser_args(ctx context.Context, 
 	var arg0 model.NewUser
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNNewUser2gqlgenᚋgraphᚋmodelᚐNewUser(ctx, tmp)
+		arg0, err = ec.unmarshalNNewUser2githubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐNewUser(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -358,7 +357,7 @@ func (ec *executionContext) field_Mutation_login_args(ctx context.Context, rawAr
 	var arg0 model.Login
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNLogin2gqlgenᚋgraphᚋmodelᚐLogin(ctx, tmp)
+		arg0, err = ec.unmarshalNLogin2githubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐLogin(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -373,7 +372,7 @@ func (ec *executionContext) field_Mutation_refreshToken_args(ctx context.Context
 	var arg0 model.RefreshTokenInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNRefreshTokenInput2gqlgenᚋgraphᚋmodelᚐRefreshTokenInput(ctx, tmp)
+		arg0, err = ec.unmarshalNRefreshTokenInput2githubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐRefreshTokenInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -474,7 +473,7 @@ func (ec *executionContext) _Mutation_createOffer(ctx context.Context, field gra
 	}
 	res := resTmp.(*model.Offer)
 	fc.Result = res
-	return ec.marshalNOffer2ᚖgqlgenᚋgraphᚋmodelᚐOffer(ctx, field.Selections, res)
+	return ec.marshalNOffer2ᚖgithubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐOffer(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Mutation_createUser(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -810,7 +809,7 @@ func (ec *executionContext) _Offer_user(ctx context.Context, field graphql.Colle
 	}
 	res := resTmp.(*model.User)
 	fc.Result = res
-	return ec.marshalNUser2ᚖgqlgenᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
+	return ec.marshalNUser2ᚖgithubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐUser(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_offers(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -845,7 +844,7 @@ func (ec *executionContext) _Query_offers(ctx context.Context, field graphql.Col
 	}
 	res := resTmp.([]*model.Offer)
 	fc.Result = res
-	return ec.marshalNOffer2ᚕᚖgqlgenᚋgraphᚋmodelᚐOfferᚄ(ctx, field.Selections, res)
+	return ec.marshalNOffer2ᚕᚖgithubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐOfferᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -2653,26 +2652,26 @@ func (ec *executionContext) marshalNID2string(ctx context.Context, sel ast.Selec
 	return res
 }
 
-func (ec *executionContext) unmarshalNLogin2gqlgenᚋgraphᚋmodelᚐLogin(ctx context.Context, v interface{}) (model.Login, error) {
+func (ec *executionContext) unmarshalNLogin2githubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐLogin(ctx context.Context, v interface{}) (model.Login, error) {
 	res, err := ec.unmarshalInputLogin(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNNewOffer2gqlgenᚋgraphᚋmodelᚐNewOffer(ctx context.Context, v interface{}) (model.NewOffer, error) {
+func (ec *executionContext) unmarshalNNewOffer2githubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐNewOffer(ctx context.Context, v interface{}) (model.NewOffer, error) {
 	res, err := ec.unmarshalInputNewOffer(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNNewUser2gqlgenᚋgraphᚋmodelᚐNewUser(ctx context.Context, v interface{}) (model.NewUser, error) {
+func (ec *executionContext) unmarshalNNewUser2githubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐNewUser(ctx context.Context, v interface{}) (model.NewUser, error) {
 	res, err := ec.unmarshalInputNewUser(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNOffer2gqlgenᚋgraphᚋmodelᚐOffer(ctx context.Context, sel ast.SelectionSet, v model.Offer) graphql.Marshaler {
+func (ec *executionContext) marshalNOffer2githubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐOffer(ctx context.Context, sel ast.SelectionSet, v model.Offer) graphql.Marshaler {
 	return ec._Offer(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNOffer2ᚕᚖgqlgenᚋgraphᚋmodelᚐOfferᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Offer) graphql.Marshaler {
+func (ec *executionContext) marshalNOffer2ᚕᚖgithubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐOfferᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Offer) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -2696,7 +2695,7 @@ func (ec *executionContext) marshalNOffer2ᚕᚖgqlgenᚋgraphᚋmodelᚐOffer�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNOffer2ᚖgqlgenᚋgraphᚋmodelᚐOffer(ctx, sel, v[i])
+			ret[i] = ec.marshalNOffer2ᚖgithubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐOffer(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -2709,7 +2708,7 @@ func (ec *executionContext) marshalNOffer2ᚕᚖgqlgenᚋgraphᚋmodelᚐOffer�
 	return ret
 }
 
-func (ec *executionContext) marshalNOffer2ᚖgqlgenᚋgraphᚋmodelᚐOffer(ctx context.Context, sel ast.SelectionSet, v *model.Offer) graphql.Marshaler {
+func (ec *executionContext) marshalNOffer2ᚖgithubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐOffer(ctx context.Context, sel ast.SelectionSet, v *model.Offer) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -2719,7 +2718,7 @@ func (ec *executionContext) marshalNOffer2ᚖgqlgenᚋgraphᚋmodelᚐOffer(ctx 
 	return ec._Offer(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNRefreshTokenInput2gqlgenᚋgraphᚋmodelᚐRefreshTokenInput(ctx context.Context, v interface{}) (model.RefreshTokenInput, error) {
+func (ec *executionContext) unmarshalNRefreshTokenInput2githubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐRefreshTokenInput(ctx context.Context, v interface{}) (model.RefreshTokenInput, error) {
 	res, err := ec.unmarshalInputRefreshTokenInput(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
@@ -2739,7 +2738,7 @@ func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.S
 	return res
 }
 
-func (ec *executionContext) marshalNUser2ᚖgqlgenᚋgraphᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v *model.User) graphql.Marshaler {
+func (ec *executionContext) marshalNUser2ᚖgithubᚗcomᚋadvenjourneyᚋapiᚋgraphᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v *model.User) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
