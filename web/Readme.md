@@ -4,9 +4,12 @@ Based on VuePress, find detailed guides here: https://vuepress.vuejs.org/
 ## Run
 ### Local development
 
+Install dependencies with `yarn`, then run
+
 ```
-yarn docs:dev
+yarn dev
 ```
+
 Browse to http://localhost:8080
 
 ## Folder structure

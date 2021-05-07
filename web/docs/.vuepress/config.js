@@ -18,15 +18,15 @@ module.exports = {
     custom: {
       url: apiURL,
     },
-    repo: 'advenjourney/website',
+    repo: 'advenjourney/advenjourney',
     docsBranch: 'main',
-    docsDir: 'docs',
+    docsDir: 'web/docs',
     editLinks: true,
     editLinkText: 'Edit this page',
 
     nav: [
       { 
-        text: 'Trips', 
+        text: 'Create a Trip', 
         link: '/trips/', 
         activeMatch: '^/trips/' 
       },
@@ -43,12 +43,14 @@ module.exports = {
 
     displayAllHeaders: true,
     sidebar: {
-      '/trips/': getTripsSidebar(),
+      // '/trips/': [
+      //   ''
+      // ],
       '/about-us/': [
         '',
-        'mission',
-        'community',
-        'team'
+        'vision',
+        'strategy',
+        'community'
       ]
     }
   }

@@ -1,11 +1,17 @@
 ---
-title: About
+title: How it works
 lang: en-US
-description: About our mission and the team
+description: Find and create trips
 navbar: true
 sidebar: true
 editLink: true
 ---
 
-# We love to travel with like minded people
+# How it works
+
+## Share your interests
+## Find like minded people
+## Travel together
+
+
 

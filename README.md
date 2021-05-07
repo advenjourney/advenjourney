@@ -1,6 +1,7 @@
-# Advenjourney
-Discover like-minded people to travel and gain experiences together.
+# AdvenJourney
+Connect and travel with like minded people.
 
-This repo contains the code for the advenjourney application:
+Monorepo, contains the code for the AdvenJourney platform:
 - [api](https://github.com/advenjourney/advenjourney/tree/main/api) - Golang backend
-- [web](https://github.com/advenjourney/advenjourney/tree/main/web) - VueJS frontend
+- [web](https://github.com/advenjourney/advenjourney/tree/main/web) - VuePress frontend
+

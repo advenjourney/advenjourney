@@ -6,7 +6,7 @@
   "repository": "https://github.com/advenjourney/website",
   "license": "MIT",
   "scripts": {
-    "dev": "vuepress dev docs",
+    "dev": "vuepress dev --no-clear-screen --debug docs",
     "build": "vuepress build docs --dest ../api/assets"
   },
   "devDependencies": {

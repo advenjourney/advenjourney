@@ -1,12 +1,20 @@
 ---
-title: Community
-collapsable: false
+title: Our Community
+collapsable: true
 ---
 
-# Community
+# Our Community
 
-## Get Started
+## Built by Community for building Communities
 
-## Host a trip
+### Why Community?
+### Building sustainable Communities
 
-## Join Traveling
+## How we Work
+### Our Values
+### Handbook
+### Tech Stack
+
+## Join the Team
+
+- Call to Action ...
