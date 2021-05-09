@@ -11,7 +11,7 @@ heroAlt: Logo image
 heroText: AdvenJourney - Travel Together
 tagline: Make your journey our journey. 
 actionText: Meet Us
-actionLink: /about-us/
+actionLink: /about-us/community.html#join-the-team
 features:
 - title: Find a trip
   details: There are plenty of pre-planned trips out there just waiting for you...
@@ -22,6 +22,7 @@ features:
 footer: Have Fun!
 ---
 
-# Recommended Trips
+# Trips 
+... coming soon
 
 <ListTrips/>

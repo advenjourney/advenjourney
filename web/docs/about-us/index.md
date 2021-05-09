@@ -9,6 +9,8 @@ editLink: true
 
 # How it works
 
+[[toc]]
+
 ## Share your interests
 ## Find like minded people
 ## Travel together

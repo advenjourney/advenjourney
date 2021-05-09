@@ -9,7 +9,6 @@ import (
 	"strconv"
 
 	"github.com/99designs/gqlgen/graphql"
-
 	"github.com/advenjourney/api/graph/generated"
 	"github.com/advenjourney/api/graph/model"
 	"github.com/advenjourney/api/internal/auth"

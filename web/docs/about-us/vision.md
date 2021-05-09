@@ -1,10 +1,11 @@
 ---
 title: Vision & Mission
+sidebarDepth: 1
 ---
 
 # Connect and travel with like minded people
 
-We love traveling! We share experiences! We want to deeply connect!
+We love traveling! We share experiences! We want to deeply connect! 
 
 These are the derived mission statements from our shared Vision and some strategies
 

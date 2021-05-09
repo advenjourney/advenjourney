@@ -43,14 +43,19 @@ module.exports = {
 
     displayAllHeaders: true,
     sidebar: {
-      // '/trips/': [
-      //   ''
-      // ],
       '/about-us/': [
         '',
-        'vision',
-        'strategy',
-        'community'
+        'community',
+        {
+          title: 'Handbook',
+          collapsable: false,
+          children: [
+            'how-we-work',
+            'vision',
+            'strategy',
+            'research'
+          ]
+        }
       ]
     }
   }

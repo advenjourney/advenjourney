@@ -1,5 +1,5 @@
 ---
-title: Strategies
+title: Strategies & Goals
 ---
 
 # Change the way how we travel and work
