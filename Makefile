@@ -29,7 +29,11 @@ endif
 
 .PHONY: all
 all: assets build
-	
+
+.PHONY: web
+web: 
+	(cd web; yarn dev; cd ..)
+
 .PHONY: clean
 clean:
 	rm -rf ./web/docs/.vuepress/dist
@@ -37,7 +41,7 @@ clean:
 
 .PHONY: assets
 assets:
-	(mkdir -p build/web)
+	(rm -rf ./build/web; mkdir -p build/web)
 	(cd web; yarn exec vuepress build docs; mv ./docs/.vuepress/dist ../build/web; cd ..)
 	(cd api; make clean; cp -R ../build/web ./assets; make generate; cd ..)
 
@@ -69,7 +73,7 @@ release-checksums:
 
 .PHONY: container
 container:
-	docker build -t $(CONTAINER_PREFIX)/$(NAME):$(VERSION) -f ./cmd/$(NAME)/Dockerfile .
+	docker build -t $(CONTAINER_PREFIX)/$(NAME):$(VERSION) -f ./Dockerfile .
 
 .PHONE: container-push
 container-push: container

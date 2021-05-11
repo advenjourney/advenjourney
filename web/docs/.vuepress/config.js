@@ -50,9 +50,9 @@ module.exports = {
           title: 'Handbook',
           collapsable: false,
           children: [
-            'how-we-work',
             'vision',
             'strategy',
+            'how-we-work',
             'research'
           ]
         }
