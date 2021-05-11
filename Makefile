@@ -42,7 +42,7 @@ clean:
 .PHONY: assets
 assets:
 	(rm -rf ./build/web; mkdir -p build/web)
-	(cd web; yarn exec vuepress build docs; mv ./docs/.vuepress/dist ../build/web; cd ..)
+	(cd web; yarn; yarn exec vuepress build docs; mv ./docs/.vuepress/dist ../build/web; cd ..)
 	(cd api; make clean; cp -R ../build/web ./assets; make generate; cd ..)
 
 .PHONY: build
