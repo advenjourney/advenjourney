@@ -1,7 +1,7 @@
 FROM node:15.8.0-alpine3.10 as node-builder
 COPY ./web /src/web
 WORKDIR /src/web
-RUN yarn exec vuepress build docs
+RUN yarn && yarn exec vuepress build docs
 
 FROM golang:1.16.4 AS go-builder
 COPY ./api /src/api
