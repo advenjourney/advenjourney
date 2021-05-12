@@ -67,7 +67,6 @@ jobs:
           PORT: ${{ secrets.STAGING_PORT }}
           KEY: ${{ secrets.STAGING_KEY }}
           script: |
-            rm -f docker-compose.yaml
-            wget https://raw.githubusercontent.com/advenjourney/api/main/deploy/staging/docker-compose.yaml
+            wget https://raw.githubusercontent.com/advenjourney/advenjourney/main/deploy/staging/docker-compose.yaml -O docker-compose.yaml
             docker pull advenjourney/api:latest
             docker-compose up
