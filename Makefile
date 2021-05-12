@@ -74,7 +74,9 @@ release-checksums:
 .PHONY: container
 container:
 	docker build -t $(CONTAINER_PREFIX)/$(NAME):$(VERSION) -f ./Dockerfile .
+	docker build -t $(CONTAINER_PREFIX)/$(NAME):latest -f ./Dockerfile .
 
 .PHONE: container-push
 container-push: container
 	docker push $(CONTAINER_PREFIX)/$(NAME):$(VERSION)
+	docker push $(CONTAINER_PREFIX)/$(NAME):latest
