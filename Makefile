@@ -30,8 +30,8 @@ endif
 .PHONY: all
 all: assets build
 
-.PHONY: web
-web: 
+.PHONY: dev
+dev:
 	(cd web; yarn dev; cd ..)
 
 .PHONY: clean

@@ -30,9 +30,13 @@ func main() {
 	if addr, ok := os.LookupEnv("API_SERVER_PORT"); ok {
 		cfg.Server.Addr = addr
 	}
-	dsn, ok := os.LookupEnv("API_DB_DSN")
-	if !ok || dsn == "" {
-		log.Fatal("DSN (API_DB_DSN) not provided")
+
+	if dsn, ok := os.LookupEnv("API_DB_DSN"); ok {
+		cfg.Database.DSN = dsn
+	}
+
+	if path, ok := os.LookupEnv("API_DB_MIGRATIONS"); ok {
+		cfg.Database.Migrations = path
 	}
 
 	assetsDir, ok := os.LookupEnv("API_ASSETS_DIR")
@@ -42,14 +46,12 @@ func main() {
 		assetFS = http.Dir(assetsDir)
 	}
 
-	cfg.Database.DSN = dsn
-
 	router := chi.NewRouter()
 	router.Use(middleware.Logger)
 	router.Use(auth.Middleware())
 
 	database.InitDB(context.TODO(), *cfg)
-	database.Migrate()
+	database.Migrate(*cfg)
 	server := handler.NewDefaultServer(api.NewExecutableSchema(api.Config{Resolvers: &graph.Resolver{}}))
 	router.Handle("/playground", playground.Handler("GraphQL playground", "/query"))
 	router.Handle("/query", CorsMiddleware(server))

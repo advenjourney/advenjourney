@@ -37,7 +37,7 @@ func InitDB(ctx context.Context, config config.Config) {
 }
 
 // Migrate uses stdlib-sql to stay compatible with migrate package
-func Migrate() {
+func Migrate(config config.Config) {
 	sqldb, err := sql.Open("postgres", DB.Config().ConnString())
 	if err != nil {
 		log.Panic(err)
@@ -49,11 +49,18 @@ func Migrate() {
 	}
 
 	driver, _ := postgres.WithInstance(sqldb, &postgres.Config{})
-	m, _ := migrate.NewWithDatabaseInstance(
-		"file://db/postgres/migrations",
+
+	migrations := "file://" + config.Database.Migrations
+	log.Println("Migrations path: " + migrations)
+	m, err := migrate.NewWithDatabaseInstance(
+		migrations,
 		"postgres",
 		driver,
 	)
+	if err != nil {
+		sqldb.Close()
+		log.Fatal(err)
+	}
 	if err := m.Up(); err != nil && err != migrate.ErrNoChange {
 		sqldb.Close()
 		log.Fatal(err)

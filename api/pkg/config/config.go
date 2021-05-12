@@ -8,7 +8,8 @@ type Config struct {
 
 // DB describes the database config object
 type DB struct {
-	DSN string
+	DSN        string
+	Migrations string
 }
 
 type Server struct {
@@ -20,6 +21,10 @@ func Load() *Config {
 	return &Config{
 		Server: Server{
 			Addr: ":8080",
+		},
+		Database: DB{
+			DSN:        "postgresql://advenjourney:advenjourney@localhost:5432/advenjourney?sslmode=disable",
+			Migrations: "db/postgres/migrations",
 		},
 	}
 }
