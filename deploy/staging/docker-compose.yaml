@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  api:
+    image: advenjourney/advenjourney:latest
+    restart: always
+    environment:
+      API_SERVER_ADDR: ':8080'
+      API_DB_DSN: 'postgresql://advenjourney:advenjourney@db/advenjourney?sslmode=disable'
+    ports:
+      - 80:8080
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD: advenjourney
+      POSTGRES_USER: advenjourney
+      POSTGRES_DB: advenjourney
+    ports:
+      - 5432:5432

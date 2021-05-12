@@ -47,17 +47,17 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # https://github.com/marketplace/actions/build-and-push-docker-images
-      - name: Build and push latest
-        id: docker_build
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: advenjourney/api:latest
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+      # - name: Build and push latest
+      #   id: docker_build
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     push: true
+      #     tags: advenjourney/api:latest
+      # - name: Image digest
+      #   run: echo ${{ steps.docker_build.outputs.digest }}
 
-      # - name: push to dockerhub
-      #   run: make container-push
+      - name: push to dockerhub
+        run: make container-push
 
       - name: Staging deployment
         uses: appleboy/ssh-action@master
@@ -66,6 +66,8 @@ jobs:
           USERNAME: ${{ secrets.STAGING_USERNAME }}
           PORT: ${{ secrets.STAGING_PORT }}
           KEY: ${{ secrets.STAGING_KEY }}
-          script:
+          script: |
+            rm -f docker-compose.yaml
+            wget https://raw.githubusercontent.com/advenjourney/api/main/deploy/staging/docker-compose.yaml
             docker pull advenjourney/api:latest
             docker-compose up
