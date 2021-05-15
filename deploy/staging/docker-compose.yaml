@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   api:
-    image: advenjourney/advenjourney:latest
+    image: advenjourney/api:latest
     restart: always
     environment:
       API_SERVER_ADDR: ':8080'

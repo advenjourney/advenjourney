@@ -68,5 +68,5 @@ jobs:
           KEY: ${{ secrets.STAGING_KEY }}
           script: |
             wget https://raw.githubusercontent.com/advenjourney/advenjourney/main/deploy/staging/docker-compose.yaml -O docker-compose.yaml
-            docker pull advenjourney/api:latest
-            docker-compose up
+            docker-compose pull
+            docker-compose up -d

@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   api:
-    image: advenjourney/advenjourney
+    image: advenjourney/api
     build:
       context: .
       dockerfile: Dockerfile
