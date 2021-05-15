@@ -1,4 +1,4 @@
-FROM node:15.8.0-alpine3.10 as node-builder
+FROM node:15.14.0-alpine3.10 as node-builder
 COPY ./web /src/web
 WORKDIR /src/web
 RUN yarn && yarn exec vuepress build docs
