@@ -35,7 +35,7 @@ Building a community needs a lot of love and care, so we want them to grow susta
 You are welcome to use this platform for your communities and travelling. And you can also become part of the community who builds this!
 
 1. Join our Slack and meet the team
-2. Connect and provide feedback, ideas and your know how
+2. Connect and provide feedback, ideas and your know-how
 3. Let's meet in one of the team trips to develop the next versions
 
 Slack: [https://join.slack.com/t/advenjourney](https://join.slack.com/t/advenjourney/shared_invite/zt-lqm8c0oh-ELtSD4ZOOiMGOk3GdML~Wg)
