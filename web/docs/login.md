@@ -4,5 +4,6 @@ sidebar: false
 ---
 
 ... coming soon
-<!-- <Login/> -->
+
+<Login/>
 
