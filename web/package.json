@@ -7,9 +7,18 @@
   "license": "MIT",
   "scripts": {
     "dev": "vuepress dev --no-clear-screen --debug docs",
-    "build": "vuepress build docs --dest ../api/assets"
+    "build": "vuepress build docs --dest ../api/assets",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/vue": "^6.2.9",
+    "babel-loader": "^8.2.2",
+    "vue-loader": "^15.9.7",
     "vuepress": "1.8.2"
   },
   "dependencies": {
