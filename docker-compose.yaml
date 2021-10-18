@@ -14,7 +14,7 @@ services:
       - 8080:8080
 
   db:
-    image: postgres:13
+    image: postgres:14
     environment:
       POSTGRES_PASSWORD: advenjourney
       POSTGRES_USER: advenjourney
