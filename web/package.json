@@ -13,7 +13,7 @@
     "vuepress": "1.8.2"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.28.0",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.11.0",
     "vue-axios": "^3.2.3"
