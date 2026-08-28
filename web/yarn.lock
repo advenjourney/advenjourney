@@ -7521,9 +7521,9 @@ vm-browserify@^1.0.1:
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
 vue-axios@^3.2.3:
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/vue-axios/-/vue-axios-3.2.3.tgz#b50d3f082a13a646aa47643398c261623082f1de"
-  integrity sha512-9GcTI9Yx+SmlWboAWksHYHCIrlxP8rX+mOEnO7DT2l7KQnFi6cDcsJDMiQ50MFPmn/RDyZ5EsiX50q45JVcW0g==
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/vue-axios/-/vue-axios-3.6.0.tgz#d9f7168b36d1b78dd34798afd975e87c7c5825c7"
+  integrity sha512-fgCDdHzujSdZzhP45Ob20P3UymD45/y98ZeB9xlLTwvFkU7Y69OB9QENNUcG20pXAnT8WhT+bLWO9f95Pc1rYg==
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
